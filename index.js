@@ -1,3 +1,6 @@
+let playerSelections = [];
+let computerSelections = [];
+
 function getComputerSelection(){
     return Math.round(Math.random() * (3 - 1) + 1);
 }
@@ -80,6 +83,10 @@ function playRound(){
     let computer = getComputerSelection();
     let player = getPlayerSelection();
 
+    playerSelections.push(substituteSelectionToText(player));
+    computerSelections.push(substituteSelectionToText(computer));
+
+
     let roundWinner = compareSelections(substituteSelectionToText(player), substituteSelectionToText(computer));
 
     return roundWinner;
@@ -140,3 +147,9 @@ function playGame(){
 
 
 playGame();
+
+console.log(playerSelections)
+console.log(computerSelections);
+let playerInfoR1 = document.getElementById("playerR1");
+
+playerInfoR1.append(playerSelections[0]);
