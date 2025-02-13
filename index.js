@@ -146,10 +146,10 @@ function playGame(){
 }
 
 
-playGame();
+//playGame();
 
-console.log(playerSelections)
-console.log(computerSelections);
-let playerInfoR1 = document.getElementById("playerR1");
+//console.log(playerSelections)
+//console.log(computerSelections);
+//let playerInfoR1 = document.getElementById("playerR1");
 
-playerInfoR1.append(playerSelections[0]);
+//playerInfoR1.append(playerSelections[0]);

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
-        <div class="title">
+        <div class="header">
             <h1>Rock Paper Scissors Game</h1>
         </div>
         <div class="body">
@@ -15,6 +16,22 @@
                 <div class="rock">Rock</div>
                 <div class="paper">Paper</div>
                 <div class="scissors">Scissors</div>
+            </div>
+
+            <div class="outcome">
+                <span class="player-selection">You selected <span id="player-selection"></span></span>
+                <span class="computer-selection">Computer selected <span id="computer-selection"></span></span>
+
+                <span class="selection-result"> <span id="selection-result"></span> won this round!</span>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="tally">
+                <span class="span-score">Player Score: <span id="player-score"></span> </span>
+                <span class="span-score">Computer Score: <span id="computer-score"></span></span>
+            </div>
+            <div class="result">
+                <span></span>
             </div>
         </div>
     </div>
