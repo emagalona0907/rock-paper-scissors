@@ -1,21 +1,14 @@
-let playerSelections = [];
-let computerSelections = [];
+let playerButtons = document.querySelectorAll("#selection-btn");
 
-function getComputerSelection(){
+function getComputerSelection() {
     return Math.round(Math.random() * (3 - 1) + 1);
 }
 
-function getPlayerSelection(){
-    let playerInput = prompt("Select from rock, paper, scissors. Please input 1 for Rock, 2 for Paper, 3 for scissors.");
-
-    return parseInt(playerInput);
-}
-
-function substituteSelectionToText(playerInput){
+function substituteSelectionToText(playerInput) {
 
     let selection;
-   
-    switch(playerInput){
+
+    switch (playerInput) {
         case 1:
             selection = "Rock";
             break;
@@ -28,69 +21,97 @@ function substituteSelectionToText(playerInput){
         default:
             selection = "not available";
     }
-    
+
     return selection;
 }
 
-function compareSelections(playerSelection, computerSelection){
+function compareSelections(playerSelection, computerSelection) {
 
-    let winner;
+    if (playerSelection === computerSelection) {
+        return "Tie";
+    }
 
-   switch(playerSelection) {
-        case "Rock": 
-            switch(computerSelection) {
-                case "Rock":
-                    winner = "tie";
-                    break;
-                case "Paper":
-                    winner = "computer";
-                    break;
-                case "Scissors":
-                    winner = "player";
-                    break;
-            }
-        case "Paper":
-            switch(computerSelection){
-                case "Rock":
-                    winner = "player";
-                    break;
-                case "Paper":
-                    winner = "tie";
-                    break;
-                case "Scissors":
-                    winner = "computer";
-                    break;
-            }
-        case "Scissors":
-            switch(computerSelection){
-                case "Rock":
-                    winner = "computer";
-                    break;
-                case "Paper":
-                    winner = "player";
-                    break;
-                case "Scissors":
-                    winner = "tie";
-                    break;
-            }
-   }
+    if (
+        (playerSelection === "Rock" && computerSelection === "Scissors") ||
 
-   return winner;
+        (playerSelection === "Paper" && computerSelection === "Rock") ||
+
+        (playerSelection === "Scissors" && computerSelection === "Paper")
+    ) {
+        return "Player";
+    }
+
+    return "Computer";
 
 }
 
-function playRound(){
-    let computer = getComputerSelection();
-    let player = getPlayerSelection();
+let playerScore = 0;
+let computerScore = 0;
 
-    playerSelections.push(substituteSelectionToText(player));
-    computerSelections.push(substituteSelectionToText(computer));
+const playerSelectionDisplay = document.getElementById('player-selection');
+const computerSelectionDisplay = document.getElementById('computer-selection');
+const roundWinnerDisplay = document.getElementById('selection-result');
+const playerScoreDisplay = document.getElementById('player-score');
+const computerScoreDisplay = document.getElementById('computer-score');
+const resultDisplay = document.getElementById("gameWinner");
+const restartBtn = document.getElementById('restart');
+
+playerButtons.forEach((btn) => {
+
+    btn.addEventListener("click", function() {
+
+            let computerSelection = substituteSelectionToText(parseInt(getComputerSelection()));
+            let playerSelection = substituteSelectionToText(parseInt(btn.value));
+            let roundWinner = compareSelections(playerSelection, computerSelection);
+
+            let gameWinner =  "";
+
+            if (roundWinner == "Player") {
+                playerScore++;
+            }
+
+            if (roundWinner == "Computer") {
+                computerScore++;
+            }
+
+            if (playerScore == 5 || computerScore == 5) {
+                gameWinner = playerScore == 5 ? "Player" : "Computer";
+                resultDisplay.innerHTML = gameWinner + " wins!";
+
+                playerButtons.forEach(button => button.disabled = true);
+            }
+
+            playerSelectionDisplay.innerHTML = playerSelection;
+            computerSelectionDisplay.innerHTML = computerSelection;
+            roundWinnerDisplay.innerHTML = roundWinner;
+            playerScoreDisplay.innerHTML = playerScore;
+            computerScoreDisplay.innerHTML = computerScore;
+    });
+
+});
+
+restartBtn.addEventListener("click", function () {
+
+    playerScore = 0;
+    computerScore = 0;
+
+    playerSelectionDisplay.innerHTML = "";
+    computerSelectionDisplay.innerHTML = "";
+    roundWinnerDisplay.innerHTML = "";
+    playerScoreDisplay.innerHTML = playerScore;
+    computerScoreDisplay.innerHTML = computerScore;
+    resultDisplay.innerHTML = "";
+
+    playerButtons.forEach(button => button.disabled = false);
+});
+/*let playerSelections = [];
+let computerSelections = [];
 
 
-    let roundWinner = compareSelections(substituteSelectionToText(player), substituteSelectionToText(computer));
 
-    return roundWinner;
-}
+
+
+
 
 function displayResults(score1, score2){
 
@@ -143,7 +164,8 @@ function playGame(){
     }
 
     
-}
+}*/
+
 
 
 //playGame();

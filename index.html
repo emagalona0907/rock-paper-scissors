@@ -13,16 +13,23 @@
         </div>
         <div class="body">
             <div class="btns">
-                <div class="rock">Rock</div>
-                <div class="paper">Paper</div>
-                <div class="scissors">Scissors</div>
+                <div class="rock"><button id="selection-btn" value="1">Rock</button></div>
+                <div class="paper"><button id="selection-btn" value="2">Paper</button></div>
+                <div class="scissors"><button id="selection-btn" value="3">Scissors</button></div>
             </div>
 
             <div class="outcome">
-                <span class="player-selection">You selected <span id="player-selection"></span></span>
-                <span class="computer-selection">Computer selected <span id="computer-selection"></span></span>
+                <span class="player-selection">You selected 
+                    <span id="player-selection"></span>
+                </span>
+                
+                <span class="computer-selection">Computer selected 
+                    <span id="computer-selection"></span>
+                </span>
 
-                <span class="selection-result"> <span id="selection-result"></span> won this round!</span>
+                <span class="selection-result"> Round Winner:
+                    <span id="selection-result"></span>
+                </span>
             </div>
         </div>
         <div class="footer">
@@ -30,8 +37,9 @@
                 <span class="span-score">Player Score: <span id="player-score"></span> </span>
                 <span class="span-score">Computer Score: <span id="computer-score"></span></span>
             </div>
-            <div class="result">
-                <span></span>
+            <div id="result">
+                Game Winner:<span id="gameWinner"></span>
+                <button class="restart" value="restart" id="restart">Restart?</button>
             </div>
         </div>
     </div>
